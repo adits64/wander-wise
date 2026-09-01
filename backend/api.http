@@ -1,0 +1,142 @@
+@baseUrl = http://localhost:5000
+@baggageId=69fda8214a5f6f66e7b79db5
+@userId=6a101b7eedadcec939f59a31
+@tripId=6a1d49114e674a5a5c86baf5
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEyYmY2NjUyODZkMzc2N2JhYThlNjciLCJpYXQiOjE3ODAzMDQxMjUsImV4cCI6MTc4MDM5MDUyNX0.zG594DAMqhmbc07XrWrbInGAUMmMFHwNep8_14mwZRw
+
+### Create Baggage Data
+POST {{baseUrl}}/baggages
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "trousers"
+}
+
+### Get all baggages
+GET {{baseUrl}}/baggages
+Authorization: Bearer {{token}}
+
+### Get a specific baggage
+GET {{baseUrl}}/baggages/{{baggageId}}
+Authorization: Bearer {{token}}
+
+### update a specific baggage
+PATCH {{baseUrl}}/baggages/{{baggageId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "T Shirt",
+    "completed": true
+}
+
+### Delete a specific baggage
+DELETE  {{baseUrl}}/baggages/{{baggageId}}
+Authorization: Bearer {{token}}
+
+### create a user
+POST {{baseUrl}}/users
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Test User",
+    "email": "user@test.com",
+    "password": "abcdefgh"
+}
+
+### Get all users
+GET {{baseUrl}}/users
+Authorization: Bearer {{token}}
+
+### Get specific user
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
+
+### update a user
+PATCH {{baseUrl}}/users/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "email": "user@test2.com"
+}
+
+### Delete specific user
+DELETE {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
+
+### register a user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+    "name": "Test User",
+    "email": "user@test.com",
+    "password": "abcdefgh"
+}
+
+### login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "user@test.com",
+    "password": "abcdefgh"
+}
+
+### create a new trip
+POST {{baseUrl}}/trips
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Trip to the moon",
+  "startDate": "2025-12-15",
+  "endDate": "2025-12-16",
+  "budget": {
+    "total": 1000
+  },
+  "destinations": ["Moon", "Mars", "Jupiter"]
+}
+
+### Get all trips
+GET {{baseUrl}}/trips
+Authorization: Bearer {{token}}
+
+### Get a trip by id
+GET {{baseUrl}}/trips/{{tripId}}
+Authorization: Bearer {{token}}
+
+### Update trip
+PATCH {{baseUrl}}/trips/{{tripId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "expenses": [
+    {
+        "name": "taxi",
+        "amount": 600,
+    }
+  ],
+}
+
+### Delete a trip
+DELETE {{baseUrl}}/trips/{{tripId}}
+Authorization: Bearer {{token}}
+
+### send trip invitation
+POST {{baseUrl}}/trips/{{tripId}}/invite
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "collaboratorEmails": [
+        "shashankj677@gmail.com"
+    ]
+}
+
+### Accept invite 
+get{{baseUrl}}/trips/{{tripID}}
