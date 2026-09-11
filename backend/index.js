@@ -11,7 +11,7 @@ const PORT = process.env.PORT;
 
 connectDB();
 app.use(cors({
-    origin: "https://wander-wise-backend-p5d1.onrender.com",
+    origin: "https://wander-wise-seven-rose.vercel.app",
     credentials: true
 }));
 
