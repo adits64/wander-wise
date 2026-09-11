@@ -27,8 +27,8 @@ const budgetSchema = z.object({
 const formSchema = z.object({
   title: z.string().min(5, "Title must be atleast 5 characters"),
   description: z.string().min(20, "Description must be atleast 5 characters"),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
+  startDate: z.string(),
+  endDate: z.string(),
   destinations: z.array(
     z.string().min(3, "Destination must be atleast 3 characters")
   ),
@@ -44,8 +44,9 @@ const TripForm = ({tripData}) => {
     defaultValues: tripData || {
       title: "",
       description: "",
-      startDate: new Date().toISOString().split('T')[0],
-      endDate: new Date().toISOString().split('T')[0],
+      startDate: z.string(),
+
+endDate: z.string(),
       destinations: [" "],
       budget: {
         total: "",
@@ -60,6 +61,13 @@ const TripForm = ({tripData}) => {
   })
 
   const onSubmit = async (formData) => {
+     console.log("========== SUBMIT ==========");
+  console.log("START DATE:", formData.startDate);
+  console.log("START TYPE:", typeof formData.startDate);
+  console.log("END DATE:", formData.endDate);
+  console.log("END TYPE:", typeof formData.endDate);
+  console.log("FULL DATA:", JSON.stringify(formData));
+
     try{
       const response = await api.post("/trips", formData);
       console.log(response);
