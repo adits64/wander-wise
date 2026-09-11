@@ -11,7 +11,7 @@ const PORT = process.env.PORT;
 
 connectDB();
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://wander-wise-backend-p5d1.onrender.com",
     credentials: true
 }));
 
